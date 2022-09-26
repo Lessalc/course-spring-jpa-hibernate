@@ -46,6 +46,8 @@ public class Order implements Serializable{
 	private Payment payment;
 	
 	
+	
+	
 	public Order() {
 	}
 
@@ -102,7 +104,9 @@ public class Order implements Serializable{
 		return items;
 	}
 	
-	
+	public Double getTotal() {
+		return items.stream().reduce(0.0, (sub, item) -> sub + item.getSubTotal(), Double::sum);
+	}
 
 	@Override
 	public int hashCode() {
